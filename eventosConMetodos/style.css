@@ -1,0 +1,28 @@
+.default {
+  text-align: center;
+  background-color: skyBlue;
+  height: 100px;
+  width: 50%;
+  margin: 20px;
+ }
+ 
+ .width {
+  width: 80%;
+ }
+ 
+ .height {
+  height: 200px;
+ }
+ 
+ body {
+  text-align: center;
+ }
+ 
+ button {
+  padding: 3px 12px 3px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  border: 0px solid;
+  background-color: #D9E8FB;
+  color: #4D4D87;
+ }
