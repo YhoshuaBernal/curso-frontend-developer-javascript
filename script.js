@@ -87,7 +87,7 @@ productList.push(
     }
 )
 function renderProducts(arr) {
-    for (product of productList) {
+    for (product of arr) {  
         const htmlCard = `<div class="product-card">
             <img src=${product.image} alt=${product.name}>
                 <div class="product-info">
