@@ -3,28 +3,45 @@ const desktopMenu = document.querySelector(".desktop-menu")
 const menuIconMobile = document.querySelector(".menu")
 const mobileMenu = document.querySelector(".mobile-menu")
 const menuCarritoIcon = document.querySelector(".navbar-shopping-cart")
-const aside = document.querySelector(".product-detail")
+const shopingCartContainer = document.querySelector("#shoppingCartContainer")
 const cardsContainer = document.querySelector(".cards-container")
-
+const productDetail = document.querySelector("#productDetail")
+const productDetailCloseIcon = document.querySelector(".product-detail-close")
 
 desktopEmail.addEventListener("click", toggleDesktopMenu)
 menuIconMobile.addEventListener("click", toggleMobileMenu)
 menuCarritoIcon.addEventListener("click", toggleCarritoAside)
+productDetailCloseIcon.addEventListener("click", closeProductDetailAside)
 
 function toggleDesktopMenu () {
-    aside.classList.add("inactive")
+    shopingCartContainer.classList.add("inactive")
     desktopMenu.classList.toggle("inactive")
+    productDetail.classList.add("inactive")
 }
 
 function toggleMobileMenu () {
-    aside.classList.add("inactive")
+    shopingCartContainer.classList.add("inactive")
     mobileMenu.classList.toggle("inactive")
+    productDetail.classList.add("inactive")
 }
 
 function toggleCarritoAside() {
     desktopMenu.classList.add("inactive")
     mobileMenu.classList.add("inactive")
-    aside.classList.toggle("inactive")
+    shopingCartContainer.classList.toggle("inactive")
+    productDetail.classList.add("inactive")
+}
+
+function openProductDetailAside() {
+    productDetail.classList.remove("inactive")
+    shopingCartContainer.classList.add("inactive")
+    mobileMenu.classList.add("inactive")
+    desktopMenu.classList.add("inactive")
+}
+
+function closeProductDetailAside() {
+    productDetail.classList.add("inactive")
+
 }
 
 const productList = []
@@ -88,8 +105,9 @@ productList.push(
 )
 function renderProducts(arr) {
     for (product of arr) {  
+        //creando maquetacion de estructura de las tarjetas de productos
         const htmlCard = `<div class="product-card">
-            <img src=${product.image} alt=${product.name}>
+            <img class="product-image" src=${product.image} alt=${product.name}>
                 <div class="product-info">
                     <div>
                     <p>$${product.price}</p>
@@ -101,10 +119,12 @@ function renderProducts(arr) {
             </div>
         </div>`
 
-    //creando maquetacion de estructura de las tarjetas de productos
-        cardsContainer.innerHTML += htmlCard
+    cardsContainer.innerHTML += htmlCard
     }
-
+    const productImages = document.querySelectorAll(".product-image");
+    productImages.forEach(image => image.addEventListener("click", openProductDetailAside ));
 }
+
+
 
 renderProducts(productList)
